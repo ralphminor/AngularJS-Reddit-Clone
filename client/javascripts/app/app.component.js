@@ -3,15 +3,7 @@
 
   angular.module('app')
     .component('app', {
-      template: `
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand">AngularJS Reddit Clone</a>
-          </div>
-        </div>
-      </nav>
-      `,
+      templateUrl: '/javascripts/app/app.template.html',
       controller: controller
     })
 
