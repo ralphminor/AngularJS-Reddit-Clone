@@ -1,13 +1,15 @@
 {
-  "name": "app",
-  "version": "0.0.0",
+  "name": "AngularJS-Reddit-Clone",
+  "version": "1.0.0",
   "private": true,
+  "description": "AngularJS Reddit Clone",
   "scripts": {
     "start": "node ./server/bin/www"
   },
   "dependencies": {
     "angular": "^1.6.4",
     "angular-moment": "^1.0.1",
+    "@uirouter/angularjs": "latest",
     "body-parser": "~1.15.2",
     "bootstrap": "^3.3.7",
     "cookie-parser": "~1.4.3",
