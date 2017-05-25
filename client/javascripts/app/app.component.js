@@ -14,7 +14,11 @@
     vm.$onInit = onInit
 
     function onInit() {
-
+      vm.posts = [
+        {title: "test1"},
+        {title: "test2"},
+        {title: "test3"}
+      ]
     }
   }
 
