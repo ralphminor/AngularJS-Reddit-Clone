@@ -1,32 +1,32 @@
-<nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand">AngularJS Reddit Clone</a>
+<header>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand">AngularJS Reddit Clone</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
 
 <main class="container">
 
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="well" ng-repeat="post in $ctrl.posts">
-      <div class="media-left">
-        <img class="media-object" ng-src="{{ post.image_url }}"/>
-        <p class="text-center">
-          <a href="#">Edit Post</a>
-        <p>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading">{{post.title}} | {{post.vote_count}}</h4>
-        <div class="text-right">{{post.author}}</div>
-        <p>{{post.body}}</p>
-        <div>Posted:{{post.created_at}}</div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="well" ng-repeat="post in $ctrl.posts">
+        <div class="media-left">
+          <img class="media-object" ng-src="{{ post.image_url }}"/>
+          <p class="text-center">
+            <a href="#">Edit Post</a>
+          <p>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{post.title}} | {{post.vote_count}}</h4>
+          <div class="text-right">{{post.author}}</div>
+          <p>{{post.body}}</p>
+          <div>Posted:{{post.created_at}}</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 
 </main>

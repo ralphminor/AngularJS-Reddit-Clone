@@ -6929,3 +6929,18 @@ a.list-group-item-danger.active:focus {
 [ng-click] {
   cursor: pointer;
 }
+
+header {
+  height: 10vh;
+}
+
+main {
+  overflow: scroll;
+  height: 85vh;
+}
+
+html, body {margin: 0; height: 100%; overflow: hidden}
+
+footer {
+  height: 3vh;
+}
