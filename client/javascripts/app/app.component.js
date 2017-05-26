@@ -12,6 +12,8 @@
     const vm = this
 
     vm.$onInit = onInit
+    vm.upVote = upVote
+    vm.downVote = downVote
 
     function onInit() {
       vm.posts = vm.posts = [
@@ -49,6 +51,17 @@
         },
       ]
     }
+
+    function upVote(post) {
+      post.vote_count++;
+    }
+
+    function downVote(post) {
+      if (post.vote_count > 0) {
+        post.vote_count--;
+      }
+    }
+
   }
 
 }());

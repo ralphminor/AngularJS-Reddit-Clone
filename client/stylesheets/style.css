@@ -6939,3 +6939,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
 footer {
   height: 3vh;
 }
+
+.post-body {
+  color: slategray;
+}

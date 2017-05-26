@@ -21,13 +21,33 @@
         </div>
         <div class="media-body">
           <h4 class="media-heading">{{post.title}} |
-            <a ng-click="$ctrl.upvote(post)"><i class="glyphicon glyphicon-arrow-up"></i></a>
+            <a ng-click="$ctrl.upVote(post)"><i class="glyphicon glyphicon-arrow-up"></i></a>
             <a ng-click="$ctrl.downVote(post)"><i class="glyphicon glyphicon-arrow-down"></i></a>
             {{post.vote_count}}
           </h4>
-          <div class="text-right">{{post.author}}</div>
-          <p>{{post.body}}</p>
-          <div>Posted: <span am-time-ago="post.created_at"></span></div>
+          <div class="text-right text-primary">{{post.author}}</div>
+          <h5 class="post-body">{{post.body}}</h5>
+          <h6 class="text-primary">Posted: <span am-time-ago="post.created_at"></span></h6>
+          <div>
+            <i class="glyphicon glyphicon-comment"></i>
+            <a class="text-info" ng-click="showComments=!showComments">
+              <ng-pluralize count="post.comments.length"
+                  when="{
+                    '0': 'No comments yet',
+                    'one': '1 comment',
+                    'other': '{} comments'
+                  }">
+              </ng-pluralize>
+            </a>
+          </div>
+          <div ng-if="showComments">
+            <div>
+              <hr>
+              <p ng-repeat="comment in post.comments">
+                {{comment.content}}
+              <p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
