@@ -46,7 +46,17 @@
               <p ng-repeat="comment in post.comments">
                 {{comment.content}}
               <p>
+
+              <form ng-submit="$ctrl.addComment(post)" class="form-inline">
+                <div class="form-group">
+                  <input type="text" ng-model="post.newComment.content" class="form-control">
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-info" type="submit">Add Comment</button>
+                </div>
+              </form>
             </div>
+
           </div>
         </div>
       </div>

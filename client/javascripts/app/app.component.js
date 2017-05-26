@@ -14,6 +14,7 @@
     vm.$onInit = onInit
     vm.upVote = upVote
     vm.downVote = downVote
+    vm.addComment = addComment
 
     function onInit() {
       vm.posts = vm.posts = [
@@ -59,6 +60,13 @@
     function downVote(post) {
       if (post.vote_count > 0) {
         post.vote_count--;
+      }
+    }
+
+    function addComment(post) {
+      if (post.newComment) {
+        post.comments.push(post.newComment);
+        delete post.newComment;
       }
     }
 
