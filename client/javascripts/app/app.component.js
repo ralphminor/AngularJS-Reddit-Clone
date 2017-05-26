@@ -26,7 +26,7 @@
           author: 'Ironic Irma',
           image_url: 'https://images.pexels.com/photos/211050/pexels-photo-211050.jpeg?h=350&auto=compress',
           vote_count: 1,
-          created_at: new Date(2004, 12, 17),
+          created_at: new Date(2004, 11, 17),
           comments: [
             {content: 'Firsties!'},
             {content: 'I did it for the lulz'},
@@ -38,7 +38,7 @@
           author: 'Emo Emma',
           image_url: 'https://images.pexels.com/photos/1994/red-vintage-shoes-sport.jpg?h=350&auto=compress',
           vote_count: 4,
-          created_at: new Date(2011, 11, 11),
+          created_at: new Date(2011, 10, 11),
           comments: [
             {content: 'Great post!'},
           ],
