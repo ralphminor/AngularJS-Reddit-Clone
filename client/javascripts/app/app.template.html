@@ -12,7 +12,21 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class="well" ng-repeat="post in $ctrl.posts">
+      <ul class="nav nav-pills">
+        <li role="presentation" class="active">
+          <input ng-model="filterText" type="search" class="form-control input-sm search-form" placeholder="Filter">
+        </li>
+        <li class="dropdown" ng-init="sort='-vote_count'; sortName='Votes'">
+          <a href="#" class="dropdown-toggle input-sm" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By {{sortName}}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a ng-click="sort='-vote_count'; sortName='Votes';">Votes</a></li>
+            <li><a ng-click="sort='created_at'; sortName='Date';">Date</a></li>
+            <li><a ng-click="sort='title'; sortName='Title'">Title</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="well" ng-repeat="post in $ctrl.posts | filter:filterText | orderBy:sort">
         <div class="media-left">
           <img class="media-object" ng-src="{{ post.image_url }}"/>
           <p class="text-center">
