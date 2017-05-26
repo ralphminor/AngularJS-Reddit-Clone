@@ -15,6 +15,8 @@
     vm.upVote = upVote
     vm.downVote = downVote
     vm.addComment = addComment
+    vm.addPost = addPost
+    vm.toggleNewPostForm = toggleNewPostForm
 
     function onInit() {
       vm.posts = vm.posts = [
@@ -53,6 +55,10 @@
       ]
     }
 
+    function toggleNewPostForm() {
+      vm.showNewPostForm = !vm.showNewPostForm;
+    }
+
     function upVote(post) {
       post.vote_count++;
     }
@@ -68,6 +74,15 @@
         post.comments.push(post.newComment);
         delete post.newComment;
       }
+    }
+
+    function addPost(post) {
+      vm.newPost.vote_count = 0
+      vm.newPost.created_at = new Date
+      vm.newPost.comments = []
+      vm.posts.push(vm.newPost)
+      toggleNewPostForm()
+      delete vm.newPost
     }
 
   }
