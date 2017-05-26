@@ -20,7 +20,11 @@
           <p>
         </div>
         <div class="media-body">
-          <h4 class="media-heading">{{post.title}} | {{post.vote_count}}</h4>
+          <h4 class="media-heading">{{post.title}} |
+            <a ng-click="$ctrl.upvote(post)"><i class="glyphicon glyphicon-arrow-up"></i></a>
+            <a ng-click="$ctrl.downVote(post)"><i class="glyphicon glyphicon-arrow-down"></i></a>
+            {{post.vote_count}}
+          </h4>
           <div class="text-right">{{post.author}}</div>
           <p>{{post.body}}</p>
           <div>Posted: <span am-time-ago="post.created_at"></span></div>
