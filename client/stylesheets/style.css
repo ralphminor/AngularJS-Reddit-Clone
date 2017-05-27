@@ -6925,19 +6925,21 @@ a.list-group-item-danger.active:focus {
   cursor: pointer;
 }
 
+html, body {margin: 0; height: 100%; overflow: hidden}
+
 header {
-  height: 10vh;
+  height: 7vh;
+  margin-bottom: 1em;
 }
 
 main {
   overflow: scroll;
-  height: 85vh;
+  height: 87vh;
 }
-
-html, body {margin: 0; height: 100%; overflow: hidden}
 
 footer {
   height: 3vh;
+  padding-top: 1em;
 }
 
 .post-body {
