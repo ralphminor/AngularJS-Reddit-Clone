@@ -69,10 +69,11 @@
       }
     }
 
-    function addComment(post) {
+    function addComment(post, form) {
       if (post.newComment) {
         post.comments.push(post.newComment);
         delete post.newComment;
+        form.$setPristine();
       }
     }
 

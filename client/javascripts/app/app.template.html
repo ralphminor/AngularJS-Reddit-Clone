@@ -105,16 +105,16 @@
             {{comment.content}}
           <p>
 
-          <form name="newCommentForm" ng-submit="$ctrl.addComment(post)" class="form-inline" novalidate>
-            <div ng-class="{'form-group': true, 'has-error': newCommentForm.newCommentContent.$invalid && newCommentForm.newCommentContent.$touched }">
-              <input name="newCommentContent" type="text" ng-model="post.newComment.content" ng-maxlength="25" class="form-control" required>
+          <form name="newCommentForm" ng-submit="$ctrl.addComment(post, newCommentForm)" class="form-inline" novalidate>
+            <div ng-class="{'form-group': true, 'has-error': newCommentForm.newCommentContent.$invalid && newCommentForm.newCommentContent.$dirty }">
+              <input name="newCommentContent" type="text" ng-model="post.newComment.content" ng-maxlength="50" class="form-control" required>
             </div>
             <div class="form-group">
-              <button class="btn btn-info" type="submit">Add Comment</button>
+              <button class="btn btn-info" type="submit" ng-disabled="newCommentForm.newCommentContent.$invalid">Add Comment</button>
             </div>
-            <div ng-messages="newCommentForm.newCommentContent.$error" ng-show="newCommentForm.newCommentContent.$touched">
+            <div ng-messages="newCommentForm.newCommentContent.$error" ng-show="newCommentForm.newCommentContent.$dirty">
               <p ng-message="required">Comment field cannot be empty.</p>
-              <p ng-message="maxlength">Comment max length is 25 characters.</p>
+              <p ng-message="maxlength">Comment max length is 50 characters.</p>
             </div>
           </form>
         </div>
