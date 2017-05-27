@@ -27,21 +27,41 @@
   <div class="row" ng-if="$ctrl.showNewPostForm">
     <div class="col-md-8 col-md-offset-2 well">
       <form name="newPostForm" ng-submit="$ctrl.addPost()" novalidate>
-        <div ng-class="{'form-group': true, 'has-error': form.title.$invalid && form.title.$touched }">
+        <div ng-class="{'form-group': true, 'has-error': newPostForm.postTitle.$invalid && newPostForm.postTitle.$touched }">
           <label for="title">Title</label>
-          <input type="text" name="postTitle" ng-model="$ctrl.newPost.title" id="title" class="form-control" required>
+          <input type="text" name="postTitle" ng-model="$ctrl.newPost.title" ng-minlength="3" ng-maxlength="25" id="title" class="form-control" required>
+            <div ng-messages="newPostForm.postTitle.$error" ng-show="newPostForm.postTitle.$touched">
+              <p ng-message="required">You must include a post title.</p>
+              <p ng-message="minlength">Title must be at least 3 characters.</p>
+              <p ng-message="maxlength">Title max length is 25 characters.</p>
+            </div>
         </div>
-        <div ng-class="{'form-group': true, 'has-error': form.body.$invalid && form.body.$touched }">
+        <div ng-class="{'form-group': true, 'has-error': newPostForm.postBody.$invalid && newPostForm.postBody.$touched }">
           <label for="body">Body</label>
-          <textarea name="postBody" ng-model="$ctrl.newPost.body" id="body" class="form-control" required></textarea>
+          <textarea name="postBody" ng-model="$ctrl.newPost.body" ng-minlength="10" ng-maxlength="250" id="body" class="form-control" required></textarea>
+            <div ng-messages="newPostForm.postBody.$error" ng-show="newPostForm.postBody.$touched">
+              <p ng-message="required">You must include a post body.</p>
+              <p ng-message="minlength">Post body must be at least 10 characters.</p>
+              <p ng-message="maxlength">Post body max length is 250 characters.</p>
+            </div>
         </div>
-        <div ng-class="{'form-group': true, 'has-error': form.author.$invalid && form.author.$touched }">
+        <div ng-class="{'form-group': true, 'has-error': newPostForm.postAuthor.$invalid && newPostForm.postAuthor.$touched }">
           <label for="author">Author</label>
-          <input type="text" name="postAuthor" ng-model="$ctrl.newPost.author" id="author" class="form-control" required>
+          <input type="text" name="postAuthor" ng-model="$ctrl.newPost.author" ng-minlength="3" ng-maxlength="35" id="author" class="form-control" required>
+            <div ng-messages="newPostForm.postAuthor.$error" ng-show="newPostForm.postAuthor.$touched">
+              <p ng-message="required">You must include a post author.</p>
+              <p ng-message="minlength">Author must be at least 3 characters.</p>
+              <p ng-message="maxlength">Author max length is 35 characters.</p>
+            </div>
         </div>
-        <div ng-class="{'form-group': true, 'has-error': form.image_url.$invalid && form.image_url.$touched }">
+        <div ng-class="{'form-group': true, 'has-error': newPostForm.postImgUrl.$invalid && newPostForm.postImgUrl.$touched }">
           <label for="image-url">Image URL</label>
-          <input type="text" name="postImgUrl" ng-model="$ctrl.newPost.image_url" id="image-url" class="form-control" required>
+          <input type="text" name="postImgUrl" ng-model="$ctrl.newPost.image_url" ng-minlength="10" ng-pattern="/(http[s]?://.*.(?:png|jpg|gif|svg|jpeg)$)/" id="image-url" class="form-control" required>
+            <div ng-messages="newPostForm.postImgUrl.$error" ng-show="newPostForm.postImgUrl.$touched">
+              <p ng-message="required">You must include an Image URL.</p>
+              <p ng-message="minlength">Image URL must be at least 10 characters.</p>
+              <p ng-message="pattern">You must enter a valid URL.</p>
+            </div>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary" ng-disabled="newPostForm.$invalid">Add Post</button>
@@ -85,12 +105,16 @@
             {{comment.content}}
           <p>
 
-          <form ng-submit="$ctrl.addComment(post)" class="form-inline">
-            <div class="form-group">
-              <input type="text" ng-model="post.newComment.content" class="form-control">
+          <form name="newCommentForm" ng-submit="$ctrl.addComment(post)" class="form-inline" novalidate>
+            <div ng-class="{'form-group': true, 'has-error': newCommentForm.newCommentContent.$invalid && newCommentForm.newCommentContent.$touched }">
+              <input name="newCommentContent" type="text" ng-model="post.newComment.content" ng-maxlength="25" class="form-control" required>
             </div>
             <div class="form-group">
               <button class="btn btn-info" type="submit">Add Comment</button>
+            </div>
+            <div ng-messages="newCommentForm.newCommentContent.$error" ng-show="newCommentForm.newCommentContent.$touched">
+              <p ng-message="required">Comment field cannot be empty.</p>
+              <p ng-message="maxlength">Comment max length is 25 characters.</p>
             </div>
           </form>
         </div>
