@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 require("dotenv").load();
 
 var index = require('./server/routes/index');
+var posts = require('./server/routes/posts');
 
 var app = express();
 
@@ -16,7 +17,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './client')));
 app.use(express.static(path.join(__dirname, './node_modules')));
 
-app.use('/api/v1', index);
+app.use('/api', index);
+app.use('/api/posts', posts);
 
 app.use('*', function (req, res) {
   res.sendFile('index.html', {
