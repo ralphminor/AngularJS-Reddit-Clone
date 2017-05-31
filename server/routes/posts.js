@@ -23,4 +23,21 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err))
 })
 
+router.post('/', (req, res, next) => {
+  db('posts')
+    .insert(formatForInsert(req))
+    .returning('*')
+    .then(posts => res.json(posts[0]))
+    .catch(err => next(err))
+})
+
 module.exports = router;
+
+function formatForInsert(req) {
+  return {
+    title: req.body.title,
+    body: req.body.body,
+    author: req.body.author,
+    image_url: req.body.image_url,
+  }
+}

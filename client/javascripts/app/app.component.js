@@ -47,13 +47,14 @@
       }
     }
 
-    function addPost(post) {
-      vm.newPost.vote_count = 0
-      vm.newPost.created_at = new Date
-      vm.newPost.comments = []
-      vm.posts.push(vm.newPost)
-      toggleNewPostForm()
-      delete vm.newPost
+    function addPost() {
+      $http.post('/api/posts', vm.newPost)
+        .then(response => {
+          response.data.comments = [];
+          vm.posts.push(response.data);
+          vm.toggleNewPostForm()
+          delete vm.newPost
+        })
     }
 
   }
