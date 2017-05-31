@@ -47,9 +47,12 @@
 
     function addComment(post, form) {
       if (post.newComment) {
-        post.comments.push(post.newComment);
-        delete post.newComment;
-        form.$setPristine();
+        $http.post(`/api/posts/${post.id}/comments`, post.newComment )
+          .then(response => {
+            post.comments.push(response.data);
+            delete post.newComment;
+            form.$setPristine();
+        })
       }
     }
 

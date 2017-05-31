@@ -7,6 +7,7 @@ require("dotenv").load();
 
 var index = require('./server/routes/index');
 var posts = require('./server/routes/posts');
+var comments = require('./server/routes/comments');
 
 var app = express();
 
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, './node_modules')));
 
 app.use('/api', index);
 app.use('/api/posts', posts);
+app.use('/api/posts', comments);
 
 app.use('*', function (req, res) {
   res.sendFile('index.html', {
