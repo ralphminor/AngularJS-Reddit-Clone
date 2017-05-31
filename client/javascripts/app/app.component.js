@@ -30,12 +30,18 @@
     }
 
     function upVote(post) {
-      post.vote_count++;
+      $http.post(`/api/posts/${post.id}/votes`)
+        .then(response => {
+          post.vote_count = response.data.vote_count
+        })
     }
 
     function downVote(post) {
       if (post.vote_count > 0) {
-        post.vote_count--;
+        $http.delete(`/api/posts/${post.id}/votes`)
+        .then(response => {
+          post.vote_count = response.data.vote_count
+        })
       }
     }
 
