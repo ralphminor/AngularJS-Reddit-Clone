@@ -101,9 +101,12 @@
       <div ng-if="showComments">
         <div>
           <hr>
-          <p ng-repeat="comment in post.comments">
+          <div class="row" ng-repeat="comment in post.comments">
+          <p class="text-info col-md-4">
             {{comment.content}}
-          <p>
+          </p>
+          <p class="col-md-4">Posted: <span am-time-ago="comment.created_at"></span></p>
+          </div>
 
           <form name="newCommentForm" ng-submit="$ctrl.addComment(post, newCommentForm)" class="form-inline" novalidate>
             <div ng-class="{'form-group': true, 'has-error': newCommentForm.newCommentContent.$invalid && newCommentForm.newCommentContent.$dirty }">
