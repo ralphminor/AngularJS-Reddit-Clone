@@ -1,0 +1,35 @@
+<div class="page-header">
+  <h1>
+    {{$ctrl.post.title}}
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+
+    <form name="form" novalidate ng-submit="$ctrl.updatePost()">
+      <div ng-class="{'form-group': true, 'has-error': form.title.$invalid && form.title.$touched }">
+        <label for="title">Title</label>
+        <input class="form-control" name="title" required ng-model="$ctrl.post.title">
+      </div>
+      <div ng-class="{'form-group': true, 'has-error': form.body.$invalid && form.body.$touched }">
+        <label>Body</label>
+        <textarea class="form-control" name="body" required ng-model="$ctrl.post.body"></textarea>
+      </div>
+      <div ng-class="{'form-group': true, 'has-error': form.author.$invalid && form.author.$touched }">
+        <label>Author</label>
+        <input class="form-control" name="author" required ng-model="$ctrl.post.author">
+      </div>
+      <div ng-class="{'form-group': true, 'has-error': form.image_url.$invalid && form.image_url.$touched }">
+        <label>Image URL</label>
+        <input class="form-control" name="image_url" required ng-model="$ctrl.post.image_url">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid">
+          Update Post
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>

@@ -11,9 +11,21 @@
 
     $stateProvider
       .state({
-        name: 'home',
-        url: '/',
+        name: 'app',
+        abstract: true,
         component: 'app',
+      })
+      .state({
+        name: 'listPosts',
+        parent: 'app',
+        url: '/',
+        component: 'listPosts',
+      })
+      .state({
+        name: 'editPost',
+        parent: 'app',
+        url: '/api/posts/:id/edit',
+        component: 'editPost',
       })
   }
 
