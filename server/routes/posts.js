@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../db');
 
-/* GET posts */
+/* GET All posts */
 router.get('/', (req, res, next) => {
   db('posts')
     .then(posts => {
@@ -23,6 +23,7 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err))
 })
 
+/* POST new post */
 router.post('/', (req, res, next) => {
   db('posts')
     .insert(formatForInsert(req))
@@ -31,6 +32,18 @@ router.post('/', (req, res, next) => {
     .catch(err => next(err))
 })
 
+/* GET post by id */
+router.get('/:id', (req, res, next) => {
+  db('posts')
+    .where({id: req.params.id})
+    .first()
+    .then(post => {
+      res.json(post)
+    })
+    .catch(err => next(err))
+})
+
+/* POST to increase votes on post by id */
 router.post('/:id/votes', (req, res, next) => {
   db('posts')
     .update('vote_count', db.raw('vote_count + 1'))
@@ -40,6 +53,7 @@ router.post('/:id/votes', (req, res, next) => {
     .catch(err => next(err))
 })
 
+/* DELETE to decrease votes on post by id */
 router.delete('/:id/votes', (req, res, next) => {
   db('posts')
     .update('vote_count', db.raw('vote_count - 1'))
@@ -49,8 +63,19 @@ router.delete('/:id/votes', (req, res, next) => {
     .catch(err => next(err))
 })
 
+/* PATCH to update post by id */
+router.patch('/:id', (req, res, next) => {
+  db('posts')
+    .update(formatForInsert(req))
+    .where({id: req.params.id})
+    .returning('*')
+    .then(posts => res.json(posts[0]))
+    .catch(err => next(err))
+})
+
 module.exports = router;
 
+/* Format the form data for insert into db*/
 function formatForInsert(req) {
   return {
     title: req.body.title,

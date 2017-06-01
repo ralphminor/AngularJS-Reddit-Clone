@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 require("dotenv").load();
 
-var index = require('./server/routes/index');
 var posts = require('./server/routes/posts');
 var comments = require('./server/routes/comments');
 
@@ -18,7 +17,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './client')));
 app.use(express.static(path.join(__dirname, './node_modules')));
 
-app.use('/api', index);
+
 app.use('/api/posts', posts);
 app.use('/api/posts', comments);
 
